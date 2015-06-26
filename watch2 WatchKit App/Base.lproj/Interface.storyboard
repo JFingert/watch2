@@ -1,29 +1,109 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6724" systemVersion="14A389" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="8121.17" systemVersion="14D136" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc" defaultGlanceController="0uZ-2p-rRc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3735"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="8066.14"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModuleProvider=""/>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController">
+                    <items>
+                        <label alignment="left" verticalAlignment="bottom" text="sum" id="O5t-E2-abU"/>
+                        <button width="1" alignment="left" verticalAlignment="bottom" title="get weather" id="Zrf-wk-Y9G">
+                            <connections>
+                                <action selector="refreshButton" destination="AgC-eL-Hgc" id="I6F-SZ-Lhd"/>
+                            </connections>
+                        </button>
+                        <label alignment="left" verticalAlignment="center" text="temp" id="ldK-KS-MvY"/>
+                        <label alignment="right" text="x val" id="bzq-CN-YHr"/>
+                        <label alignment="right" text="y val" id="vQ6-N9-QLr"/>
+                        <label alignment="right" text="z val" id="ny0-iU-rES"/>
+                        <label alignment="left" text="city" id="c2D-ex-V65"/>
+                    </items>
+                    <connections>
+                        <outlet property="city" destination="c2D-ex-V65" id="q0u-bn-bx2"/>
+                        <outlet property="getWeather" destination="Zrf-wk-Y9G" id="cYg-xM-GjH"/>
+                        <outlet property="summary" destination="O5t-E2-abU" id="arS-Of-OjY"/>
+                        <outlet property="temp" destination="ldK-KS-MvY" id="Gey-af-jZY"/>
+                        <outlet property="xVal" destination="bzq-CN-YHr" id="ejh-ci-zZk"/>
+                        <outlet property="yVal" destination="vQ6-N9-QLr" id="5yQ-CD-a2A"/>
+                        <outlet property="zVal" destination="ny0-iU-rES" id="T8s-Si-AcM"/>
+                        <segue destination="48N-sM-UsB" kind="relationship" relationship="nextPage" id="tpy-KP-8xc"/>
+                    </connections>
+                </controller>
             </objects>
-            <point key="canvasLocation" x="235" y="347"/>
+            <point key="canvasLocation" x="14" y="310"/>
+        </scene>
+        <!--Interface Controller-->
+        <scene sceneID="o7R-BY-8FH">
+            <objects>
+                <controller hidesWhenLoading="NO" id="48N-sM-UsB">
+                    <items>
+                        <label width="62" height="25" alignment="center" verticalAlignment="center" text="Page 2" id="L2A-uI-aM8"/>
+                        <button width="1" alignment="left" title="Launch Modal" id="wEn-qy-GAG">
+                            <connections>
+                                <segue destination="0CE-1F-yF9" kind="modal" id="GYy-bZ-Gfy"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <segue destination="a3B-2i-FCD" kind="relationship" relationship="nextPage" id="pjl-YX-NP8"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="229" y="310"/>
+        </scene>
+        <!--Interface Controller-->
+        <scene sceneID="pnJ-SL-VsP">
+            <objects>
+                <controller hidesWhenLoading="NO" id="a3B-2i-FCD">
+                    <items>
+                        <label alignment="left" text="X" id="W90-lf-xe1">
+                            <color key="textColor" red="0.49803921580314636" green="0.49803921580314636" blue="0.49803921580314636" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <label alignment="left" text="x val" id="e4W-bz-Owf"/>
+                        <label alignment="left" text="Y" id="AHk-PG-uKd">
+                            <color key="textColor" red="0.49803921580314636" green="0.49803921580314636" blue="0.49803921580314636" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <label alignment="left" text="y val" id="4Sh-co-4i7"/>
+                        <label alignment="left" text="Z" id="GXi-mL-qEp">
+                            <color key="textColor" red="0.49803921580314636" green="0.49803921580314636" blue="0.49803921580314636" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <label alignment="left" text="z val" id="1px-Qd-qdm"/>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="422" y="310"/>
+        </scene>
+        <!--cx.jpg-->
+        <scene sceneID="vVY-ac-SZb">
+            <objects>
+                <controller backgroundImage="cx.jpg" hidesWhenLoading="NO" id="0CE-1F-yF9">
+                    <items>
+                        <label width="46" height="35" alignment="center" verticalAlignment="center" text="Modal" id="yI1-PK-m1o"/>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="224" y="611"/>
         </scene>
         <!--Glance Interface Controller-->
         <scene sceneID="BOz-TT-tkC">
             <objects>
-                <glanceController spacing="0.0" id="0uZ-2p-rRc" customClass="GlanceController" customModuleProvider="">
+                <glanceController spacing="0.0" id="0uZ-2p-rRc" customClass="GlanceController">
                     <items>
                         <group alignment="left" id="t8f-Gd-c4y"/>
-                        <group alignment="left" id="uCw-4Q-Ouw"/>
+                        <group alignment="left" id="uCw-4Q-Ouw">
+                            <items>
+                                <label alignment="left" text="Glance" id="Urb-ZW-EoH"/>
+                            </items>
+                        </group>
                     </items>
                     <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>
                 </glanceController>
             </objects>
-            <point key="canvasLocation" x="235" y="672"/>
+            <point key="canvasLocation" x="19" y="825"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
@@ -44,7 +124,7 @@
         <!--Notification Controller-->
         <scene sceneID="KIl-fV-djm">
             <objects>
-                <controller id="gdX-wl-uQE" customClass="NotificationController" customModuleProvider=""/>
+                <controller id="gdX-wl-uQE" customClass="NotificationController"/>
             </objects>
             <point key="canvasLocation" x="553" y="1001"/>
         </scene>

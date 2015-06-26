@@ -28,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "27C95E4B1B3A03D80067F797"
-               BuildableName = "watch2.app"
-               BlueprintName = "watch2"
+               BlueprintIdentifier = "27C95E871B3A03D80067F797"
+               BuildableName = "watch2 WatchKit Extension.appex"
+               BlueprintName = "watch2 WatchKit Extension"
                ReferencedContainer = "container:watch2.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -42,9 +42,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "27C95E871B3A03D80067F797"
-               BuildableName = "watch2 WatchKit Extension.appex"
-               BlueprintName = "watch2 WatchKit Extension"
+               BlueprintIdentifier = "27C95E4B1B3A03D80067F797"
+               BuildableName = "watch2.app"
+               BlueprintName = "watch2"
                ReferencedContainer = "container:watch2.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

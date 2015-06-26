@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <WatchConnectivity/WatchConnectivity.h>
 
 @interface AppDelegate ()
 
@@ -14,9 +15,27 @@
 
 @implementation AppDelegate
 
+- (void)application:(UIApplication *)application handleWatchKitExtensionRequest:(NSDictionary *)userInfo reply:(void(^)(NSDictionary *replyInfo))reply {
+//    [[WCSession defaultSession] didReceiveUserInfo:userInfo
+//                               replyHandler:^(NSDictionary *replyHandler) {
+//                                   
+//                               }
+//                               errorHandler:^(NSError *error) {
+//                                   
+//                               }
+//     ];
+}
+
+//- (void)session:(WCSession *)session didReceiveUserInfo:(NSDictionary *)data {
+//    NSLog(@"data in the parent app! %@", data);
+//}
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+   
+    
     return YES;
 }
 

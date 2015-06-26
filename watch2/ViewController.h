@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WatchConnectivity/WatchConnectivity.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <WCSessionDelegate, CLLocationManagerDelegate>
 
+@property (nonatomic, strong) IBOutlet UILabel *weatherId;
+@property (nonatomic, strong) IBOutlet UILabel *weatherContent;
+@property (nonatomic, strong) IBOutlet UILabel *city;
+@property (nonatomic,strong) CLLocationManager *locationManager;
 
 @end
 
