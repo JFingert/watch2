@@ -10,13 +10,29 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController">
                     <items>
-                        <group width="1" height="140" alignment="left" layout="vertical" id="vd9-7F-IVf">
+                        <group width="134" height="140" alignment="left" layout="vertical" id="vd9-7F-IVf">
                             <items>
-                                <group width="1" height="20" alignment="left" id="MV4-ui-uze">
+                                <group width="1" height="112" alignment="left" layout="vertical" id="MV4-ui-uze">
                                     <items>
-                                        <label alignment="center" text="x val" id="bzq-CN-YHr"/>
-                                        <label alignment="center" text="y val" id="vQ6-N9-QLr"/>
-                                        <label alignment="center" text="z val" id="ny0-iU-rES"/>
+                                        <group width="1" alignment="left" layout="vertical" id="elX-Px-A5j">
+                                            <items>
+                                                <button width="1" alignment="right" title="Bye" id="zQE-Eq-hj4" userLabel="Bye">
+                                                    <connections>
+                                                        <action selector="bye" destination="AgC-eL-Hgc" id="wXJ-m3-Rv3"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                        <group width="1" alignment="right" layout="vertical" id="65H-xm-u6u">
+                                            <items>
+                                                <button width="1" alignment="left" title="hi" id="DRt-C6-HeS">
+                                                    <connections>
+                                                        <action selector="hi" destination="AgC-eL-Hgc" id="HT0-el-1od"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                        <label alignment="right" text="resp" id="0xu-gm-Geg"/>
                                     </items>
                                 </group>
                                 <group width="1" alignment="left" layout="vertical" id="yA7-Dv-9P8">
@@ -37,11 +53,9 @@
                     <connections>
                         <outlet property="city" destination="c2D-ex-V65" id="q0u-bn-bx2"/>
                         <outlet property="getWeather" destination="Zrf-wk-Y9G" id="cYg-xM-GjH"/>
+                        <outlet property="socketResp" destination="0xu-gm-Geg" id="vJ4-eR-dui"/>
                         <outlet property="summary" destination="O5t-E2-abU" id="arS-Of-OjY"/>
                         <outlet property="temp" destination="ldK-KS-MvY" id="Gey-af-jZY"/>
-                        <outlet property="xVal" destination="bzq-CN-YHr" id="ejh-ci-zZk"/>
-                        <outlet property="yVal" destination="vQ6-N9-QLr" id="5yQ-CD-a2A"/>
-                        <outlet property="zVal" destination="ny0-iU-rES" id="T8s-Si-AcM"/>
                         <segue destination="48N-sM-UsB" kind="relationship" relationship="nextPage" id="tpy-KP-8xc"/>
                     </connections>
                 </controller>

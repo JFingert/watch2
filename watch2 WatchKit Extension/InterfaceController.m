@@ -10,6 +10,9 @@
 #import <WatchConnectivity/WatchConnectivity.h>
 #import <CoreMotion/CoreMotion.h>
 
+NSInputStream *inputStream;
+NSOutputStream *outputStream;
+
 
 @interface InterfaceController() <WCSessionDelegate>
 @property (strong, nonatomic) IBOutlet WKInterfaceLabel *answer;
@@ -28,6 +31,11 @@
 @synthesize motionManagaer;
 @synthesize xVal, yVal, zVal;
 @synthesize motionQue;
+@synthesize socketList;
+@synthesize socketName;
+@synthesize socketResp;
+
+NSMutableArray * messages;
 
 
 - (void)awakeWithContext:(id)context {
@@ -35,6 +43,9 @@
 //    motionManagaer.accelerometerUpdateInterval = 30;
     motionManagaer = [[CMMotionManager alloc] init];
     motionQue = [NSOperationQueue mainQueue];
+    
+    [self initNetworkCommunication];
+    messages = [[NSMutableArray alloc] init];
 }
 
 - (void)willActivate {
@@ -139,7 +150,103 @@
      ];
 }
 
+//socket stuff
 
+
+- (void) sendMessage: (NSString *) message {
+    NSString *response  = [NSString stringWithFormat:@"msg:%@", message];
+    NSData *data = [[NSData alloc] initWithData:[response dataUsingEncoding:NSASCIIStringEncoding]];
+    [outputStream write:[data bytes] maxLength:[data length]];
+}
+
+- (void)initNetworkCommunication {
+    CFReadStreamRef readStream;
+    CFWriteStreamRef writeStream;
+    CFStreamCreatePairWithSocketToHost(NULL, (CFStringRef)@"localhost", 80, &readStream, &writeStream);
+    inputStream = (__bridge NSInputStream *)readStream;
+    outputStream = (__bridge NSOutputStream *)writeStream;
+    [inputStream setDelegate:self];
+    [outputStream setDelegate:self];
+    [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    [inputStream open];
+    [outputStream open];
+    
+    //join
+    NSString *response  = [NSString stringWithFormat:@"iam:%@", @"joshua"];
+    NSData *data = [[NSData alloc] initWithData:[response dataUsingEncoding:NSASCIIStringEncoding]];
+    [outputStream write:[data bytes] maxLength:[data length]];
+}
+
+- (void)stream:(NSStream *)theStream handleEvent:(NSStreamEvent)streamEvent {
+    NSLog(@"stream event %i", streamEvent);
+    
+    typedef enum {
+        NSStreamEventNone = 0,
+        NSStreamEventOpenCompleted = 1 << 0,
+        NSStreamEventHasBytesAvailable = 1 << 1,
+        NSStreamEventHasSpaceAvailable = 1 << 2,
+        NSStreamEventErrorOccurred = 1 << 3,
+        NSStreamEventEndEncountered = 1 << 4
+    };
+    
+    switch (streamEvent) {
+            
+        case NSStreamEventOpenCompleted:
+            NSLog(@"Stream opened");
+            break;
+            
+        case NSStreamEventHasBytesAvailable:
+            
+            if (theStream == inputStream) {
+                
+                uint8_t buffer[1024];
+                int len;
+                
+                while ([inputStream hasBytesAvailable]) {
+                    len = [inputStream read:buffer maxLength:sizeof(buffer)];
+                    if (len > 0) {
+                        
+                        NSString *output = [[NSString alloc] initWithBytes:buffer length:len encoding:NSASCIIStringEncoding];
+                        
+                        if (nil != output) {
+                            NSLog(@"server said: %@", output);
+                        }
+                    }
+                }
+            }
+            break;
+            
+        case NSStreamEventErrorOccurred:
+            NSLog(@"Can not connect to the host!");
+            break;
+            
+        case NSStreamEventEndEncountered:
+            break;
+            
+        default:
+            NSLog(@"Unknown event");
+    }
+}
+
+- (void) messageReceived:(NSString *)message {
+    
+    [messages addObject:message];
+    NSLog(messages);
+
+    
+}
+
+
+
+
+- (IBAction)bye {
+    [self sendMessage:@"hello"];
+}
+
+- (IBAction)hi {
+    [self sendMessage:@"goodbye"];
+}
 @end
 
 
