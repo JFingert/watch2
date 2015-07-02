@@ -104,11 +104,15 @@
 //    });
 }
 
-//-(void) setText:(NSObject *)message {
-//    summary.text = [message objectForKey:@"summary"];
-//    temp.text = [message objectForKey:@"temp"];
-//    city.text = [message objectForKey:@"count"];
-//}
+- (void)session:(nonnull WCSession *)session didFinishFileTransfer:(nonnull WCSessionFileTransfer *)fileTransfer error:(nullable NSError *)error {
+    // This method is called on the sending side when the file has successfully transfered.
+    if (error) {
+        NSLog(@"There was an error transferring the file: %@", error);
+    }
+    else {
+        NSLog(@"The file was transfered succesfully!");
+    }
+}
 
 //#pragma mark IBOutlets for Watch interface
 
@@ -125,9 +129,9 @@
                                replyHandler:^(NSDictionary *reply) {
                                    //handle reply from iPhone app here
                                    NSLog(@"reply! %@", reply);
-                                   summary.text = [reply objectForKey:@"summary"];
-                                   temp.text = [reply objectForKey:@"temp"];
-                                   city.text = [reply objectForKey:@"count"];
+//                                   summary.text = [reply objectForKey:@"summary"];
+//                                   temp.text = [reply objectForKey:@"temp"];
+//                                   city.text = [reply objectForKey:@"count"];
                                }
                                errorHandler:^(NSError *error) {
                                    NSLog(@"ERROR! %@", error);

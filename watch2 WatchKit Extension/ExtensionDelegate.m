@@ -10,8 +10,13 @@
 
 @implementation ExtensionDelegate
 
+@synthesize complicationData;
+@synthesize ComplicationCurrentEntry;
+
 - (void)applicationDidFinishLaunching {
     // Perform any final initialization of your application.
+    ComplicationCurrentEntry = @{@"ComplicationShortTextData": @"test data"};
+    complicationData = [NSDictionary dictionaryWithObjectsAndKeys:ComplicationCurrentEntry,@"ComplicationCurrentEntry", nil];
     NSLog(@"didfinishlaunching!");
 }
 

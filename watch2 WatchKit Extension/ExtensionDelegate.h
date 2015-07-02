@@ -9,5 +9,6 @@
 #import <WatchKit/WatchKit.h>
 
 @interface ExtensionDelegate : NSObject <WKExtensionDelegate>
-
+@property (strong, nonatomic) NSDictionary *complicationData;
+@property (strong, nonatomic) NSDictionary *ComplicationCurrentEntry;
 @end

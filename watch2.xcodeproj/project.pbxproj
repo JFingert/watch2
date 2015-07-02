@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		27938FF01B3C861800346A2D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27938FEF1B3C861800346A2D /* CoreLocation.framework */; };
 		27938FF21B3C86C000346A2D /* AFNetworking in Resources */ = {isa = PBXBuildFile; fileRef = 27938FF11B3C86C000346A2D /* AFNetworking */; };
+		27B6708B1B41AC68002030E8 /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C95EB31B3A0A3D0067F797 /* WatchConnectivity.framework */; };
+		27B6708D1B41AC75002030E8 /* WatchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B6708C1B41AC75002030E8 /* WatchKit.framework */; };
+		27B671011B41BCA3002030E8 /* ComplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B671001B41BCA3002030E8 /* ComplicationController.m */; };
+		27B671031B41D4E6002030E8 /* ClockKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B671021B41D4E6002030E8 /* ClockKit.framework */; };
 		27C95E511B3A03D80067F797 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C95E501B3A03D80067F797 /* main.m */; };
 		27C95E541B3A03D80067F797 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C95E531B3A03D80067F797 /* AppDelegate.m */; };
 		27C95E571B3A03D80067F797 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C95E561B3A03D80067F797 /* ViewController.m */; };
@@ -27,7 +31,6 @@
 		27C95E9A1B3A03D80067F797 /* GlanceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C95E991B3A03D80067F797 /* GlanceController.m */; };
 		27C95E9C1B3A03D80067F797 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27C95E9B1B3A03D80067F797 /* Assets.xcassets */; };
 		27C95EB21B3A05950067F797 /* cx.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 27C95EB11B3A05950067F797 /* cx.jpg */; };
-		27C95EB41B3A0A3D0067F797 /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C95EB31B3A0A3D0067F797 /* WatchConnectivity.framework */; };
 		27C95EC71B3A1B200067F797 /* publicData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C95EBD1B3A1B200067F797 /* publicData.framework */; };
 		27E24AFC1B3DCDD10027C499 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E24AFB1B3DCDD10027C499 /* CoreMotion.framework */; };
 		27FBC9BF1B3B32A70091BC3E /* watch2 WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = 27C95E791B3A03D80067F797 /* watch2 WatchKit App.app */; };
@@ -103,6 +106,10 @@
 		279878E31B3B5D1000C304F1 /* watch2 WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "watch2 WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		279878E41B3B5D5600C304F1 /* watch2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = watch2.entitlements; sourceTree = "<group>"; };
 		279878E51B3B5D7200C304F1 /* watch2 WatchKit App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "watch2 WatchKit App.entitlements"; sourceTree = "<group>"; };
+		27B6708C1B41AC75002030E8 /* WatchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchKit.framework; path = System/Library/Frameworks/WatchKit.framework; sourceTree = SDKROOT; };
+		27B670FF1B41BC5D002030E8 /* ComplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplicationController.h; sourceTree = "<group>"; };
+		27B671001B41BCA3002030E8 /* ComplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplicationController.m; sourceTree = "<group>"; };
+		27B671021B41D4E6002030E8 /* ClockKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ClockKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.0.sdk/System/Library/Frameworks/ClockKit.framework; sourceTree = DEVELOPER_DIR; };
 		27C95E4C1B3A03D80067F797 /* watch2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watch2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27C95E501B3A03D80067F797 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		27C95E521B3A03D80067F797 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -147,9 +154,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27B6708D1B41AC75002030E8 /* WatchKit.framework in Frameworks */,
+				27B6708B1B41AC68002030E8 /* WatchConnectivity.framework in Frameworks */,
 				27E24AFC1B3DCDD10027C499 /* CoreMotion.framework in Frameworks */,
 				27938FF01B3C861800346A2D /* CoreLocation.framework in Frameworks */,
-				27C95EB41B3A0A3D0067F797 /* WatchConnectivity.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +179,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27B671031B41D4E6002030E8 /* ClockKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +215,8 @@
 		27C95E431B3A03D80067F797 = {
 			isa = PBXGroup;
 			children = (
+				27B671021B41D4E6002030E8 /* ClockKit.framework */,
+				27B6708C1B41AC75002030E8 /* WatchKit.framework */,
 				27E24AFB1B3DCDD10027C499 /* CoreMotion.framework */,
 				277ECAA91B3DC27800C0FACA /* shared stuff */,
 				27C95E4E1B3A03D80067F797 /* watch2 */,
@@ -289,6 +300,8 @@
 		27C95E8C1B3A03D80067F797 /* watch2 WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				27B670FF1B41BC5D002030E8 /* ComplicationController.h */,
+				27B671001B41BCA3002030E8 /* ComplicationController.m */,
 				279878E31B3B5D1000C304F1 /* watch2 WatchKit Extension.entitlements */,
 				27C95E8F1B3A03D80067F797 /* InterfaceController.h */,
 				27C95E901B3A03D80067F797 /* InterfaceController.m */,
@@ -623,6 +636,7 @@
 				27C95E911B3A03D80067F797 /* InterfaceController.m in Sources */,
 				27C95E971B3A03D80067F797 /* NotificationController.m in Sources */,
 				27C95E9A1B3A03D80067F797 /* GlanceController.m in Sources */,
+				27B671011B41BCA3002030E8 /* ComplicationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -781,6 +795,7 @@
 		27C95EA11B3A03D80067F797 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "watch2 WatchKit Extension/watch2 WatchKit Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
@@ -799,6 +814,7 @@
 		27C95EA21B3A03D80067F797 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "watch2 WatchKit Extension/watch2 WatchKit Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";

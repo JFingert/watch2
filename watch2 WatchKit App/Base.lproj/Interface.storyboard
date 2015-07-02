@@ -10,17 +10,29 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController">
                     <items>
-                        <label alignment="left" verticalAlignment="bottom" text="sum" id="O5t-E2-abU"/>
-                        <button width="1" alignment="left" verticalAlignment="bottom" title="get weather" id="Zrf-wk-Y9G">
-                            <connections>
-                                <action selector="refreshButton" destination="AgC-eL-Hgc" id="I6F-SZ-Lhd"/>
-                            </connections>
-                        </button>
-                        <label alignment="left" verticalAlignment="center" text="temp" id="ldK-KS-MvY"/>
-                        <label alignment="right" text="x val" id="bzq-CN-YHr"/>
-                        <label alignment="right" text="y val" id="vQ6-N9-QLr"/>
-                        <label alignment="right" text="z val" id="ny0-iU-rES"/>
-                        <label alignment="left" text="city" id="c2D-ex-V65"/>
+                        <group width="1" height="140" alignment="left" layout="vertical" id="vd9-7F-IVf">
+                            <items>
+                                <group width="1" height="20" alignment="left" id="MV4-ui-uze">
+                                    <items>
+                                        <label alignment="center" text="x val" id="bzq-CN-YHr"/>
+                                        <label alignment="center" text="y val" id="vQ6-N9-QLr"/>
+                                        <label alignment="center" text="z val" id="ny0-iU-rES"/>
+                                    </items>
+                                </group>
+                                <group width="1" alignment="left" layout="vertical" id="yA7-Dv-9P8">
+                                    <items>
+                                        <label alignment="right" text="city" id="c2D-ex-V65"/>
+                                        <label alignment="right" verticalAlignment="bottom" text="sum" id="O5t-E2-abU"/>
+                                        <button width="1" alignment="center" verticalAlignment="bottom" title="get weather" id="Zrf-wk-Y9G">
+                                            <connections>
+                                                <action selector="refreshButton" destination="AgC-eL-Hgc" id="I6F-SZ-Lhd"/>
+                                            </connections>
+                                        </button>
+                                        <label alignment="right" verticalAlignment="center" text="temp" id="ldK-KS-MvY"/>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
                     </items>
                     <connections>
                         <outlet property="city" destination="c2D-ex-V65" id="q0u-bn-bx2"/>

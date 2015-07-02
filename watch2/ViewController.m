@@ -124,5 +124,12 @@ NSString *city = @"";
     [self getWeather];
 }
 
+- (IBAction)triggerFile:(id)sender {
+    NSURL *fileUrl = [[NSBundle mainBundle] URLForResource:@"cx" withExtension:@"jpg"];
+    NSLog(@"triggerFile: ", fileUrl);
+    //    [[WCSessionFileTransfer defaultFileSession] transferFile:fileUrl metadata:<#(nullable NSDictionary<NSString *,id> *)#>metadata]
+    [[WCSession defaultSession] transferFile:fileUrl metadata:nil];
+}
+
 
 @end
