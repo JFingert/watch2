@@ -102,9 +102,9 @@ NSMutableArray * messages;
 - (void)session:(nonnull WCSession *)session didReceiveMessage:(nonnull NSDictionary<NSString *,id> *)message replyHandler:(nonnull void (^)(NSDictionary<NSString *,id> * __nonnull))replyHandler {
     NSLog(@"message: %@", message);
 
-    summary.text = [message objectForKey:@"summary"];
-    temp.text = [message objectForKey:@"temp"];
-    city.text = [message objectForKey:@"count"];
+//    summary.text = [message objectForKey:@"summary"];
+//    temp.text = [message objectForKey:@"temp"];
+//    city.text = [message objectForKey:@"count"];
     
     
     //Use this to update the UI instantaneously (otherwise, takes a little while)
@@ -140,9 +140,9 @@ NSMutableArray * messages;
                                replyHandler:^(NSDictionary *reply) {
                                    //handle reply from iPhone app here
                                    NSLog(@"reply! %@", reply);
-//                                   summary.text = [reply objectForKey:@"summary"];
-//                                   temp.text = [reply objectForKey:@"temp"];
-//                                   city.text = [reply objectForKey:@"count"];
+                                   summary.text = [reply objectForKey:@"summary"];
+                                   temp.text = [reply objectForKey:@"temp"];
+                                   city.text = [reply objectForKey:@"count"];
                                }
                                errorHandler:^(NSError *error) {
                                    NSLog(@"ERROR! %@", error);
@@ -232,7 +232,7 @@ NSMutableArray * messages;
 - (void) messageReceived:(NSString *)message {
     
     [messages addObject:message];
-    NSLog(messages);
+//    NSLog(messages);
 
     
 }

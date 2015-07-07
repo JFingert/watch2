@@ -9,15 +9,16 @@
 #import "ViewController.h"
 #import <WatchConnectivity/WatchConnectivity.h>
 #import <CoreLocation/CoreLocation.h>
+#import <MagicalRecord/MagicalRecord.h>
+#import "Entity.h"
 
 @interface ViewController () <WCSessionDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *myTextField;
 @property (strong, nonatomic) IBOutlet UILabel *label;
-
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 @property (strong, nonatomic) NSMutableArray *counterData;
-
 @property (nonatomic, assign) int counter;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
@@ -25,10 +26,15 @@
 
 @synthesize myTextField;
 @synthesize label;
+@synthesize fetchedResultsController = _fetchedResultsController;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    self.fetchedResultsController = [Entity MR_fetchAllSortedBy:@"timestamp" ascending:NO withPredicate:nil groupBy:nil delegate:self];
+//    NSManagedObjectContext *defaultContext = [NSManagedObjectContext MR_defaultContext];
+    [MagicalRecord setupCoreDataStackWithStoreNamed:@"Entity"];
+    
     
     if ([WCSession isSupported]) {
         WCSession *session = [WCSession defaultSession];
@@ -85,6 +91,31 @@ NSString *city = @"";
              
              //                 NSDictionary *applicationData = @{@"summary": summary, @"temp": temp, @"city": city};
              
+//             Entity *entity = [Entity MR_createEntity];
+//             entity.created = [NSDate date];
+//             entity.temp = temp;
+             
+//             [MagicalRecord saveWithBlock:^(NSManagedObjectContext *defaultContext){
+             
+             
+
+                 
+//             }];
+//             Entity *entity = [Entity MR_createEntity];
+             
+//             [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+//                 Entity *localEntity = [Entity MR_createEntityInContext:localContext];
+//                 localEntity.created = [NSDate date];
+//                 localEntity.temp = temp;
+//             } completion:^(BOOL success, NSError *error) {
+//                 // This block runs in main thread
+//             }];
+             
+//             NSLog(@"%@", [Entity MR_findAll]);
+
+             
+//             NSArray * tempFound = [Entity MR_findAll];
+             
              NSDictionary *applicationData = [[NSDictionary alloc] initWithObjects:@[summary, temp, refreshes] forKeys:@[@"summary", @"temp", @"count"]];
              
              [[WCSession defaultSession] sendMessage:applicationData
@@ -101,12 +132,22 @@ NSString *city = @"";
     [task resume];
     }
 
+//- (void)saveContext {
+//    [[NSManagedObjectContext defaultContext] saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+//        if (success) {
+//            NSLog(@"You successfully saved your context.");
+//        } else if (error) {
+//            NSLog(@"Error saving context: %@", error.description);
+//        }
+//    }];
+//}
+
          
          
          
 
 - (void)session:(nonnull WCSession *)session didReceiveMessage:(nonnull NSDictionary<NSString *,id> *)message replyHandler:(nonnull void (^)(NSDictionary<NSString *,id> * __nonnull))replyHandler {
-    NSLog(@"message!!!: %@", message);
+//    NSLog(@"message!!!: %@", message);
     
     if([[message objectForKey:@"refresh"]  isEqual: @"refresh"]) {
         [self getWeather];
@@ -126,10 +167,65 @@ NSString *city = @"";
 
 - (IBAction)triggerFile:(id)sender {
     NSURL *fileUrl = [[NSBundle mainBundle] URLForResource:@"cx" withExtension:@"jpg"];
-    NSLog(@"triggerFile: ", fileUrl);
+//    NSLog(@"triggerFile: ", fileUrl);
     //    [[WCSessionFileTransfer defaultFileSession] transferFile:fileUrl metadata:<#(nullable NSDictionary<NSString *,id> *)#>metadata]
     [[WCSession defaultSession] transferFile:fileUrl metadata:nil];
 }
+
+- (IBAction)getCoreData:(id)sender {
+    [self latestWeather];
+}
+
+- (void) latestWeather {
+    NSArray *entities = [Entity MR_findAllSortedBy:@"created"
+                                         ascending:NO];
+    NSMutableArray *latest = [NSMutableArray array];
+
+//    NSLog(@"getCoreData! %@", entities);
+    for (int i = 0; i < 3; i++) {
+        NSLog(@"created! %@",[[entities objectAtIndex:i] created]);
+//        NSLog([[entities objectAtIndex:i] valueForKey:@"created"]);
+        NSDate *created = [[entities objectAtIndex:i] created];
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"HH:MM, M/d"];
+        
+        //Optionally for time zone conversions
+        [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"America/Los_Angeles"]];
+        
+        NSString *stringFromDate = [formatter stringFromDate:created];
+        NSString *temp = [[entities objectAtIndex:i] valueForKey:@"temp"];
+//        NSLog(@"temp %@", temp, @"date %@", stringFromDate);
+//        NSLog(created);
+        NSString *weatherString = [[stringFromDate stringByAppendingString:@" - "]stringByAppendingString:temp];
+        [latest insertObject: weatherString atIndex: i];
+//        NSLog(@"weatherString %@", weatherString);
+//        NSLog(@"latest: %@", latest);
+    }
+    
+    NSArray *tempObjs = @[[latest objectAtIndex:0], [latest objectAtIndex:1], [latest objectAtIndex:2]];
+    
+    NSDictionary *applicationData = [[NSDictionary alloc] initWithObjects:tempObjs forKeys:@[@"one", @"two", @"three"]];
+    
+    [[WCSession defaultSession] sendMessage:applicationData
+                               replyHandler:^(NSDictionary *reply) {
+                                   //handle reply from iPhone app here
+                                   NSLog(@"reply! %@", reply);
+                               }
+                               errorHandler:^(NSError *error) {
+                                   //catch any errors here
+                                   NSLog(@"ERROR!!! %@", error);
+                               }
+     ];
+}
+//}];
+//}
+
+//core data
+
+//+ (id)insertNewObjectForEntityForName:(NSString *)entityName {
+//    inManagedObjectContext:(NSManagedObjectContext *)context
+//}
 
 
 @end

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <WatchConnectivity/WatchConnectivity.h>
+#import <MagicalRecord/MagicalRecord.h>
 
 @interface AppDelegate ()
 
@@ -16,6 +17,11 @@
 @implementation AppDelegate
 
 - (void)application:(UIApplication *)application handleWatchKitExtensionRequest:(NSDictionary *)userInfo reply:(void(^)(NSDictionary *replyInfo))reply {
+    
+//    [MagicalRecord setupCoreDataStack];
+//    _managedObjectContext = [NSManagedObjectContext MR_defaultContext];
+    
+    
 //    [[WCSession defaultSession] didReceiveUserInfo:userInfo
 //                               replyHandler:^(NSDictionary *replyHandler) {
 //                                   
@@ -33,8 +39,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
-   
+
+//    [MagicalRecord setupCoreDataStackWithStoreNamed:@"Entity"];
     
     return YES;
 }
@@ -47,6 +53,7 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -59,6 +66,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+//    [MagicalRecord cleanUp];
 }
 
 @end
